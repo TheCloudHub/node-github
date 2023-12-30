@@ -1,0 +1,30 @@
+name: My Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+    inputs: 
+      environment:
+        type: choice
+        options: 
+        - dev
+        - prod
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Echo environment variable
+      run: echo ${{ env.ENV_VARIABLE }}
+
+    - name: Echo secret
+      run: echo ${{ secrets.SECRET_NAME }}
