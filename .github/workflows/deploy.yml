@@ -4,14 +4,17 @@ on:
     inputs:
       environment:
         required: true
-        type: string
+        type: choice
+        options: 
+        - dev
+        - prod
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     environment:
-      name: dev
+      name: ${{ inputs.environment }}
     env:
       TF_VAR_env: ${{ vars.ENV_VARIABLE }}
 
