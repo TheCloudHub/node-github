@@ -1,0 +1,21 @@
+name: Deploy to Environment
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    env:
+      TF_VAR_env: ${{ vars.ENV_VARIABLE }}
+
+    steps:
+    - name: Use variables
+      run: |
+        echo "TF ENV ENR : $TF_VAR_env"
