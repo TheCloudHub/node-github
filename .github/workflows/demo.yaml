@@ -1,4 +1,4 @@
-name: Deploy to Environment
+name: Deploy to Nowhere
 on:
   workflow_dispatch:
     inputs:
