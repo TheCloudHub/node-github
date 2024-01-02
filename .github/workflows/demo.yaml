@@ -29,5 +29,5 @@ jobs:
     needs: deploy
     steps:
       - name: Reuse TF_VAR_env in Another Job
-        run: |
+        run:  |
           echo "TF VAR ENV in Another Job: ${{ needs.deploy.outputs.TF_VAR_env }}"
