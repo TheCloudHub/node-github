@@ -23,10 +23,11 @@ jobs:
         echo "TF ENV ENR : $TF_VAR_env"
     - name: Output the variable
       run: echo "::set-output name=TF_VAR_env::$TF_VAR_env"
-  second_job:
-    name: Second Job
+  another_job:
+    name: Another Job
     runs-on: ubuntu-latest
-    needs: deploy  # Specify dependency on the first job
+    needs: deploy
     steps:
-    - name: Use the variable
-      run: echo "TF_VAR_env in second job: ${{ needs.deploy.outputs.TF_VAR_env }}"
+      - name: Reuse TF_VAR_env in Another Job
+        run: |
+          echo "TF VAR ENV in Another Job: ${{ needs.deploy.outputs.TF_VAR_env }}"
