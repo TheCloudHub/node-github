@@ -8,6 +8,9 @@ on:
         options:
           - dev
           - prod
+          
+env:
+  deploy-a: ${{ vars.a }}
 
 jobs:
   deploy:
@@ -30,4 +33,8 @@ jobs:
     steps:
       - name: Reuse TF_VAR_env in Another Job
         run:  |
+          echo "TF VAR ENV in Another Job: ${{ needs.deploy.outputs.TF_VAR_env }}"
+---
+
+|
           echo "TF VAR ENV in Another Job: ${{ needs.deploy.outputs.TF_VAR_env }}"
